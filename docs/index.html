@@ -41,11 +41,25 @@
     // 奖品概率
             //天理鸽抱枕3个，天理鸽笔记本10个，印象天理手绘明信片7个，鼠标垫40个，天理鸽钥匙扣1000个
     for (let i = 0; i < 3; i++) { weights.push(0); }   // 天理鸽抱枕 
-    for (let i = 0; i < 150; i++) { weights.push(1); }  // 天理鸽橙色钥匙扣
-    for (let i = 0; i < 7; i++) { weights.push(2); }  // 印象天理手绘明信片
-    for (let i = 0; i < 150; i++) { weights.push(3); }  // 蓝色钥匙扣
+    for (let i = 0; i < 10; i++) { weights.push(5); }  // 鼠标垫
+    for (let i = 0; i < 8; i++) { weights.push(4); }  // 天理鸽笔记本
+    for (let i = 0; i < 6; i++) { weights.push(2); }  // 印象天理手绘明信片
+    for (let i = 0; i < 50; i++) { weights.push(1); }  // 天理鸽橙色钥匙扣
+    for (let i = 0; i < 8; i++) { weights.push(4); }  // 天理鸽笔记本
+    for (let i = 0; i < 15; i++) { weights.push(5); }  // 鼠标垫
+    for (let i = 0; i < 6; i++) { weights.push(2); }  // 印象天理手绘明信片
+    for (let i = 0; i <8; i++) { weights.push(4); }  // 天理鸽笔记本
+    for (let i = 0; i < 5; i++) { weights.push(5); }  // 鼠标垫
+    for (let i = 0; i < 50; i++) { weights.push(1); }  // 天理鸽橙色钥匙扣
     for (let i = 0; i < 10; i++) { weights.push(4); }  // 天理鸽笔记本
-    for (let i = 0; i < 40; i++) { weights.push(5); }  // 鼠标垫
+    for (let i = 0; i < 6; i++) { weights.push(2); }  // 印象天理手绘明信片
+    for (let i = 0; i < 10; i++) { weights.push(5); }  // 鼠标垫
+    for (let i = 0; i < 8; i++) { weights.push(4); }  // 天理鸽笔记本
+    for (let i = 0; i < 50; i++) { weights.push(3); }  // 蓝色钥匙扣
+    for (let i = 0; i < 6; i++) { weights.push(2); }  // 印象天理手绘明信片
+    for (let i = 0; i < 15; i++) { weights.push(5); }  // 鼠标垫
+    for (let i = 0; i < 8; i++) { weights.push(4); }  // 天理鸽笔记本
+    for (let i = 0; i < 40; i++) { weights.push(3); }  // 蓝色钥匙扣
 
     const randomIndex = weights[Math.floor(Math.random() * weights.length)];
     return randomIndex; // 直接返回奖品对应的索引
@@ -67,7 +81,7 @@ function run(angle) {
     let current = 0;
     let base = 1800;
     const finalAngle = base + angle;
-    const ratio = 0.008;
+    const ratio = 0.033;
     timer = setInterval(function () {
         if (current >= finalAngle) {
             clickLock = false;
