@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸运抽奖</title>
+    <link rel="stylesheet" href="2.css">
+</head>
+
+<body>
+    <div id="box">
+        <div class="left">
+            <div class="item" style="--i:0;--clr:#ff7875;"><span>天理鸽抱枕</span></div>
+            <div class="item" style="--i:-1;--clr:#ff9c6e;"><span>钥匙扣</span></div>
+            <div class="item" style="--i:-2;--clr:#ffc069;"><span>手绘明信片</span></div>
+        </div>
+        <div class="right">
+            <div class="item" style="--i:0;--clr:#d3f261;"><span>鼠标垫</span></div>
+            <div class="item" style="--i:1;--clr:#95de64;"><span>笔记本</span></div>
+            <div class="item" style="--i:2;--clr:#5cdbd3;"><span>钥匙扣</span></div>
+        </div>
+        <div id="btn">抽奖</div>
+    </div>
+    <script>
+        const box = document.getElementById("box"),
+            itemEls = document.querySelectorAll(".item"),
+            btn = document.getElementById("btn");
+        let clickLock = false;
+
+        btn.addEventListener("click", () => {
+            if (clickLock) {
+                return;
+            }
+            const randomIndex = getRandomIndex();
+            run(randomIndex * 60 + 30);
+        });
+
+        function getRandomIndex() {
+    const weights = [];
+    // 奖品概率
+    for (let i = 0; i < 3; i++) { weights.push(0); }   // 天理鸽抱枕 
+    for (let i = 0; i < 100; i++) { weights.push(1); }  // 天理鸽橙色钥匙扣
+    for (let i = 0; i < 14; i++) { weights.push(2); }  // 印象天理手绘明信片
+    for (let i = 0; i < 100; i++) { weights.push(3); }  // 蓝色钥匙扣
+    for (let i = 0; i < 20; i++) { weights.push(4); }  // 天理鸽笔记本
+    for (let i = 0; i < 20; i++) { weights.push(5); }  // 鼠标垫
+
+    const randomIndex = weights[Math.floor(Math.random() * weights.length)];
+    return randomIndex; // 直接返回奖品对应的索引
+}
+
+
+let currentRandomIndex = 0; // 定义一个全局变量来存储当前抽奖的结果索引
+
+btn.addEventListener("click", () => {
+    if (clickLock) {
+        return;
+    }
+    currentRandomIndex = getRandomIndex(); // 更新当前的抽奖结果索引
+    run(currentRandomIndex * 60 + 30);
+});
+
+function run(angle) {
+    clickLock = true;
+    let current = 0;
+    let base = 1800;
+    const finalAngle = base + angle;
+    const ratio = 0.1;
+    timer = setInterval(function () {
+        if (current >= finalAngle) {
+            clickLock = false;
+            clearInterval(timer);
+
+        }
+        const step = (finalAngle - current) * ratio;
+        current += Math.ceil(step);
+        box.style.transform = `rotate(${current}deg)`;
+        btn.style.transform = `translate(-50%, -50%) rotate(${-current}deg)`;
+    }, 16);
+}
+    </script>
+</body>
+
+</html>
